@@ -44,7 +44,7 @@ export default class HandleDriverData extends React.Component {
     
   };
 
-  render(props) {
+  render() {
     
     return (
       <div>

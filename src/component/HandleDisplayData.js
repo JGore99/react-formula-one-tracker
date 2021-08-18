@@ -4,8 +4,8 @@ import React from "react";
 export default class HandleDisplayData extends React.Component {
   
 
-    render (props) {
-        //const {driverData}=this.props;  
+    render () {
+        const {driver}=this.props;  
     return (
             <div>
                 
@@ -22,7 +22,7 @@ export default class HandleDisplayData extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                          <td>{this.props.driver}</td>  
+                          <td>{driver.age}</td>  
                         
                         </tr>
                     </tbody>
