@@ -1,10 +1,10 @@
 import React from "react";
-import HandleDriverData from "./HandleDriverData";
+//import HandleDriverData from "./HandleDriverData";
 
 export default class HandleDisplayData extends React.Component {
   
 
-    render () {
+    render (props) {
         //const {driverData}=this.props;  
     return (
             <div>
@@ -22,7 +22,7 @@ export default class HandleDisplayData extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                          <td>{this.props.drivers}</td>  
+                          <td>{this.props.driver}</td>  
                         
                         </tr>
                     </tbody>

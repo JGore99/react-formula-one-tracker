@@ -48,7 +48,9 @@ export default class HandleDriverData extends React.Component {
     
     return (
       <div>
-        <HandleDisplayData drivers={this.state.drivers} />
+        {this.state.drivers.map(driver => (
+          <HandleDisplayData driver={driver} />
+        ))}
       </div>
     );    
   }
