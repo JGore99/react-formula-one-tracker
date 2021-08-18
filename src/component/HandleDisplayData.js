@@ -2,34 +2,39 @@ import React from "react";
 //import HandleDriverData from "./HandleDriverData";
 
 export default class HandleDisplayData extends React.Component {
-  
-
-    render () {
-        const {driver}=this.props;  
+  render() {
     return (
-            <div>
-                
-                <table>
-                    <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Age</td>
-                        <td>Nationality</td>
-                        <td>Team</td>
-                        <td>Championship Pts.</td>
-                        <td>Race Wins</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td>{driver.age}</td>  
-                        
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        );
-    };
+      <div>
+        <table>
+          <thead>
+              <tr className="top-row"></tr>
+            <tr key="subject" className="subject-row">
+              <td key="name">Name</td>
+              <td key="age">Age</td>
+              <td key="nationality">Nationality</td>
+              <td key="team">Team</td>
+              <td key="championship">Championship Pts.</td>
+              <td key="wins">Race Wins</td>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.drivers.map(
+              ({ fullName, age, nationality, points, wins, team }) => (
+                <tr key={fullName}>
+                  <td>{fullName}</td>
+                  <td>{age}</td>
+                  <td>{nationality}</td>
+                  <td>{team}</td>
+                  <td>{points}</td>
+                  <td>{wins}</td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
 /*{this.props.driver.map(() => (

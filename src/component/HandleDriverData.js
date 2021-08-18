@@ -35,7 +35,7 @@ export default class HandleDriverData extends React.Component {
       let points = driverStandings[i]["points"];
       let wins = driverStandings[i]["wins"];
       let team = data["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"][i]["Constructors"][0]["name"];
-      drivers.push({fullName, age, nationality, team, points, wins}); // pushes an object for each driver into the drivers array
+      drivers.push({fullName, age, nationality, team, points, wins }); // pushes an object for each driver into the drivers array
     };
   
     this.setState({ drivers: drivers, isLoading: false}, () => {
@@ -48,16 +48,10 @@ export default class HandleDriverData extends React.Component {
     
     return (
       <div>
-        {this.state.drivers.map(driver => (
-          <HandleDisplayData driver={driver} />
-        ))}
+          <HandleDisplayData drivers={this.state.drivers} />
       </div>
     );    
-  }
- 
-
-  
- 
+  };
 };
 
 /* 
