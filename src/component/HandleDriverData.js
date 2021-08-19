@@ -36,7 +36,7 @@ export default class HandleDriverData extends React.Component {
       let points = driverStandings[i]["points"];
       let wins = driverStandings[i]["wins"];
       let team = data["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"][i]["Constructors"][0]["name"];
-      drivers.push({fullName, age, nationality, team, points, wins }); // pushes an object for each driver into the drivers array
+      drivers.push({fullName, driverLastName, age, nationality, team, points, wins }); // pushes an object for each driver into the drivers array
     };
   
     this.setState({ drivers: drivers, isLoading: false}, () => {
@@ -45,7 +45,7 @@ export default class HandleDriverData extends React.Component {
   };
 
   handleDataSorting(){
-    <HandleSort selection={this.state.selection} />
+    <HandleSort selection={this.props.selection} />
     if(this.props.selection === "name"){
       this.state.drivers.driverLastName((a, b) => {
         if (a.driverLastName.toLowerCase() < b.driverLastName.toLowerCase())

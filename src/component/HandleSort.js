@@ -17,6 +17,9 @@ export default class HandleSort extends React.Component {
     return (
       <div>
         <select onChange={this.handleSelect}>
+          <option disabled defaultValue="sort" id="sort">
+            Sort
+          </option>
           <option value="name" id="name">
             Name
           </option>
