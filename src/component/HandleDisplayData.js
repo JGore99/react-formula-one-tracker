@@ -1,13 +1,20 @@
 import React from "react";
+import HandleSort from "./HandleSort";
 //import HandleDriverData from "./HandleDriverData";
 
 export default class HandleDisplayData extends React.Component {
   render() {
     return (
       <div>
+        <h1>Formula 1 Drivers Standing 2021</h1>
         <table>
           <thead>
-              <tr className="top-row"></tr>
+            <tr className="top-row">
+              <td className="head-title">Formula 1 Drivers Standing 2021</td>
+              <td>
+                < HandleSort />
+              </td>
+            </tr>
             <tr key="subject" className="subject-row">
               <td key="name">Name</td>
               <td key="age">Age</td>

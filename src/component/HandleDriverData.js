@@ -1,5 +1,6 @@
 import React from "react";
 import HandleDisplayData from "./HandleDisplayData";
+import HandleSort from "./HandleSort";
 
 export default class HandleDriverData extends React.Component {
   state = {
@@ -41,11 +42,26 @@ export default class HandleDriverData extends React.Component {
     this.setState({ drivers: drivers, isLoading: false}, () => {
       console.log(this.state);
     });
-    
   };
 
-  render() {
-    
+  handleDataSorting(){
+    <HandleSort selection={this.state.selection} />
+    if(this.props.selection === "name"){
+      this.state.drivers.driverLastName((a, b) => {
+        if (a.driverLastName.toLowerCase() < b.driverLastName.toLowerCase())
+        return -1;
+      if (a.driverLastName.toLowerCase() > b.driverLastName.toLowerCase())
+        return 1;
+      return 0;
+      })
+    } else if(this.props.selection === "age"){
+      this.state.drivers.age((a, b) => {
+        return a.age - b.age;
+      });
+    }
+  }
+
+  render() {   
     return (
       <div>
           <HandleDisplayData drivers={this.state.drivers} />
