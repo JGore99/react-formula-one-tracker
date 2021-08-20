@@ -12,12 +12,12 @@ export default class HandleSort extends React.Component {
   componentDidUpdate(prevState) {
     console.log(this.state);
   }
-
+        
   render() {
     return (
       <div>
         <select onChange={this.handleSelect}>
-          <option disabled defaultValue="sort" id="sort">
+          <option hidden defaultValue="disabled" id="sort">
             Sort
           </option>
           <option value="name" id="name">

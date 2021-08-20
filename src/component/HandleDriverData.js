@@ -46,19 +46,21 @@ export default class HandleDriverData extends React.Component {
 
   handleDataSorting(){
     <HandleSort selection={this.props.selection} />
+    const driversCopy = [].concat(this.state.drivers)
     if(this.props.selection === "name"){
-      this.state.drivers.driverLastName((a, b) => {
-        if (a.driverLastName.toLowerCase() < b.driverLastName.toLowerCase())
-        return -1;
-      if (a.driverLastName.toLowerCase() > b.driverLastName.toLowerCase())
-        return 1;
-      return 0;
-      })
+      driversCopy((a, b) => a.driverLastName.localeCompare(b.driverLastName))
     } else if(this.props.selection === "age"){
-      this.state.drivers.age((a, b) => {
+      driversCopy((a, b) => {
         return a.age - b.age;
-      });
+      }); 
     }
+    this.setState({ drivers: driversCopy }, () => {
+      console.log(this.state);
+    });
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.selection);
   }
 
   render() {   
