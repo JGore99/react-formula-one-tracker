@@ -6,6 +6,7 @@ export default class HandleDriverData extends React.Component {
   state = {
     drivers: [],
     isLoading: true,
+    selection: "Sort"
   };
 
   componentDidMount() {
@@ -39,23 +40,35 @@ export default class HandleDriverData extends React.Component {
       drivers.push({fullName, driverLastName, age, nationality, team, points, wins }); // pushes an object for each driver into the drivers array
     };
   
-    this.setState({ drivers: drivers, isLoading: false}, () => {
-      console.log(this.state);
-    });
+    this.setState(() => ({
+      drivers: drivers, isLoading: false
+    }));
   };
 
-  handleDataSorting(){
-    <HandleSort selection={this.props.selection} />
-    const driversCopy = [].concat(this.state.drivers)
-    if(this.props.selection === "name"){
-      driversCopy((a, b) => a.driverLastName.localeCompare(b.driverLastName))
-    } else if(this.props.selection === "age"){
-      driversCopy((a, b) => {
+  handleDataSorting = (selection) => { //this needs to be a stand alone function, or be bound by this.handleDataSorting
+    const driversCopy = this.state.drivers;
+    console.log(this.state);
+    if (selection === "name") {
+      driversCopy.sort((a, b) =>
+        a.driverLastName > b.driverLastName ? 1 : -1
+      );
+    } else if (selection === "age") {
+      driversCopy.sort((a, b) => {
         return a.age - b.age;
-      }); 
+      });
+    } else if (selection === "nationality") {
+      driversCopy.sort((a, b) => (a.nationality > b.nationality ? 1 : -1));
+    } else if (selection === "points") {
+      driversCopy.sort((a, b) => {
+        return a.points - b.points;
+      });
+    } else if (selection === "wins") {
+      driversCopy.sort((a, b) => {
+        return a.wins - b.wins;
+      });
     }
-    this.setState({ drivers: driversCopy }, () => {
-      console.log(this.state);
+    this.setState({ drivers: driversCopy, selection: selection }, () => {
+      console.log(driversCopy);
     });
   }
 
@@ -65,8 +78,16 @@ export default class HandleDriverData extends React.Component {
 
   render() {   
     return (
-      <div>
+        <div className="table-header">
+          <div className="table-headline">
+            <h1>Formula 1 Drivers Standing 2021</h1>
+          </div>
+          <div>
+          <HandleSort callBack={this.handleDataSorting} />
+          </div>
+          <div>
           <HandleDisplayData drivers={this.state.drivers} />
+          </div>  
       </div>
     );    
   };

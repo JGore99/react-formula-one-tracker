@@ -1,22 +1,15 @@
 import React from "react";
+//import HandleDriverData from "./TestFile";
+//import HandleDisplayData from "./HandleDisplayData";
 
-export default class HandleSort extends React.Component {
-  state = {
-    selection: "Sort",
-  };
+const HandleSort = props => {
 
-  handleSelect = (e) => {
-    this.setState(() => ({ selection: e.target.value }));
-  };
-
-  componentDidUpdate(prevState) {
-    console.log(this.state);
-  }
-        
-  render() {
     return (
       <div>
-        <select onChange={this.handleSelect}>
+        <select
+          onChange={e => props.callBack(e.target.value) //callback is a value in props being passed up. This could be passed through multiple components
+          }
+        >
           <option hidden defaultValue="disabled" id="sort">
             Sort
           </option>
@@ -41,5 +34,6 @@ export default class HandleSort extends React.Component {
         </select>
       </div>
     );
-  }
-}
+};
+
+export default HandleSort;
