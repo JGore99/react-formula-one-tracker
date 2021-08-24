@@ -89,7 +89,7 @@ export default class HandleDriverData extends React.Component {
     console.log(this.state.selection);
   }
 
-  handleSelect = (e) => {
+  handleSelect = (e) => { //this is not needed. Make selection = e.target.value. amd [ass that into handleSorting. Then update state just once.]
     this.setState({ selection: e.target.value }, () => {
       this.handleDataSorting();
     });

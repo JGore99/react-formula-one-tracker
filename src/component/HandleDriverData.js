@@ -1,4 +1,5 @@
 import React from "react";
+import { ImageBackground} from "react";
 import HandleDisplayData from "./HandleDisplayData";
 import HandleSort from "./HandleSort";
 
@@ -6,7 +7,7 @@ export default class HandleDriverData extends React.Component {
   state = {
     drivers: [],
     isLoading: true,
-    selection: "Sort"
+    selection: "Sort",
   };
 
   componentDidMount() {
@@ -21,7 +22,8 @@ export default class HandleDriverData extends React.Component {
   }
 
   handleApiData(data) {
-    let driverStandings = data["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"];
+    let driverStandings =
+      data["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"];
     const drivers = [];
     for (let i = 0; i < driverStandings.length; i++) {
       let driverLastName = driverStandings[i]["Driver"]["familyName"];
@@ -36,16 +38,29 @@ export default class HandleDriverData extends React.Component {
       let nationality = driverStandings[i]["Driver"]["nationality"];
       let points = driverStandings[i]["points"];
       let wins = driverStandings[i]["wins"];
-      let team = data["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"][i]["Constructors"][0]["name"];
-      drivers.push({fullName, driverLastName, age, nationality, team, points, wins }); // pushes an object for each driver into the drivers array
-    };
-  
-    this.setState(() => ({
-      drivers: drivers, isLoading: false
-    }));
-  };
+      let team =
+        data["MRData"]["StandingsTable"]["StandingsLists"][0][
+          "DriverStandings"
+        ][i]["Constructors"][0]["name"];
+      drivers.push({
+        fullName,
+        driverLastName,
+        age,
+        nationality,
+        team,
+        points,
+        wins,
+      }); // pushes an object for each driver into the drivers array
+    }
 
-  handleDataSorting = (selection) => { //this needs to be a stand alone function, or be bound by this.handleDataSorting
+    this.setState(() => ({
+      drivers: drivers,
+      isLoading: false,
+    }));
+  }
+
+  handleDataSorting = (selection) => {
+    //this needs to be a stand alone function, or be bound by this.handleDataSorting
     const driversCopy = this.state.drivers;
     console.log(this.state);
     if (selection === "name") {
@@ -58,40 +73,55 @@ export default class HandleDriverData extends React.Component {
       });
     } else if (selection === "nationality") {
       driversCopy.sort((a, b) => (a.nationality > b.nationality ? 1 : -1));
+    } else if (selection === "team") {
+      driversCopy.sort((a, b) => (a.team > b.team ? 1 : -1));
     } else if (selection === "points") {
       driversCopy.sort((a, b) => {
-        return a.points - b.points;
+        return b.points - a.points;
       });
     } else if (selection === "wins") {
       driversCopy.sort((a, b) => {
-        return a.wins - b.wins;
+        return b.wins - a.wins;
       });
     }
     this.setState({ drivers: driversCopy, selection: selection }, () => {
       console.log(driversCopy);
     });
-  }
+  };
+
+  handleBackgroundImage = () => {
+    return (
+      <div style={{
+        backgroundImage: `url(https://images.unsplash.com/photo-1537402792645-b6d9a3ac3fad?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9ybXVsYSUyMG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60)`,
+        height: "100vh", backgroundRepeat: "no-repeat",
+      }}>
+      </div>
+    );
+  };
 
   componentDidUpdate() {
     console.log(this.props.selection);
   }
 
-  render() {   
+  render() {
     return (
-        <div className="table-header">
-          <div className="table-headline">
-            <h1>Formula 1 Drivers Standing 2021</h1>
-          </div>
-          <div>
+      <div className="table-header">
+        <div className="table-headline">
+          <h1>Formula 1 Drivers Standing 2021</h1>
+        </div>
+        <div>
           <HandleSort callBack={this.handleDataSorting} />
-          </div>
-          <div>
+        </div>
+        <div>
           <HandleDisplayData drivers={this.state.drivers} />
-          </div>  
+        </div>
+        <div>
+          <this.handleBackgroundImage />
+        </div>
       </div>
-    );    
-  };
-};
+    );
+  }
+}
 
 /* 
 async componentDidMount() {
@@ -117,6 +147,6 @@ async componentDidMount() {
             <div>{driver.wins}</div>
           </div>
 */
- //handleTableHeader = (driverData) => {
-  //    return Object.keys.map(driverData => <th key={attr}>{attr.toUpperCase()}</th>)
-  // }
+//handleTableHeader = (driverData) => {
+//    return Object.keys.map(driverData => <th key={attr}>{attr.toUpperCase()}</th>)
+// }
