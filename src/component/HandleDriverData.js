@@ -99,7 +99,7 @@ export default class HandleDriverData extends React.Component {
 
   render() {
     return (
-      <div style={backgroundStyle}>
+      <div className="backgroundStyle">
         <div className="tableBody">
           <div className="table-headline">
             <h1>Formula 1 Drivers Standing 2021</h1>
