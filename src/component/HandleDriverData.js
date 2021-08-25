@@ -1,7 +1,7 @@
 import React from "react";
-import { ImageBackground} from "react";
 import HandleDisplayData from "./HandleDisplayData";
 import HandleSort from "./HandleSort";
+import '../App.css';
 
 export default class HandleDriverData extends React.Component {
   state = {
@@ -90,13 +90,7 @@ export default class HandleDriverData extends React.Component {
   };
 
   handleBackgroundImage = () => {
-    return (
-      <div style={{
-        backgroundImage: `url(https://images.unsplash.com/photo-1537402792645-b6d9a3ac3fad?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9ybXVsYSUyMG9uZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60)`,
-        height: "100vh", backgroundRepeat: "no-repeat",
-      }}>
-      </div>
-    );
+    return <div>style = {}</div>;
   };
 
   componentDidUpdate() {
@@ -105,24 +99,32 @@ export default class HandleDriverData extends React.Component {
 
   render() {
     return (
-      <div className="table-header">
-        <div className="table-headline">
-          <h1>Formula 1 Drivers Standing 2021</h1>
-        </div>
-        <div>
-          <HandleSort callBack={this.handleDataSorting} />
-        </div>
-        <div>
-          <HandleDisplayData drivers={this.state.drivers} />
-        </div>
-        <div>
-          <this.handleBackgroundImage />
+      <div style={backgroundStyle}>
+        <div className="tableBody">
+          <div className="table-headline">
+            <h1>Formula 1 Drivers Standing 2021</h1>
+          </div>
+          <div>
+            <HandleSort callBack={this.handleDataSorting} />
+          </div>
+          <div>
+            <HandleDisplayData drivers={this.state.drivers} />
+          </div>
         </div>
       </div>
     );
   }
 }
 
+const backgroundStyle = {
+  backgroundImage:
+    "url('https://source.unsplash.com/1600x900/?formula-one,')",
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  width: "100vw",
+  height: "100vh",
+};
 /* 
 async componentDidMount() {
     const response = await fetch("https://ergast.com/api/f1/current/driverStandings.json");

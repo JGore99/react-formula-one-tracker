@@ -5,7 +5,7 @@ import HandleDriverData from './component/HandleDriverData';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
           < HandleDriverData />
     </div>     
   );

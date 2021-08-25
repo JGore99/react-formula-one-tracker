@@ -1,9 +1,10 @@
 import React from "react";
+import '../App.css';
 
 export default class HandleDisplayData extends React.Component {
   render() {
     return (
-      <table>
+      <table className="table">
         <thead>
             {/* <HandleSort callBack={props.handleDataSorting} /> this is how it would look if it needed to pass through this file and up*/}
           <tr key="subject" className="subject-row">

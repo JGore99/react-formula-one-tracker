@@ -1,11 +1,12 @@
 import React from "react";
+import '../App.css';
 //import HandleDriverData from "./TestFile";
 //import HandleDisplayData from "./HandleDisplayData";
 
 const HandleSort = (props) => {
   return (
     <div>
-      <select
+      <select className="selectDropdown"
         onChange={
           (e) => props.callBack(e.target.value) //callback is a value in props being passed up. This could be passed through multiple components
         }
