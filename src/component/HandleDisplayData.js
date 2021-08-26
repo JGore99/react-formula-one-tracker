@@ -7,7 +7,7 @@ export default class HandleDisplayData extends React.Component {
       <table className="table">
         <thead>
             {/* <HandleSort callBack={props.handleDataSorting} /> this is how it would look if it needed to pass through this file and up*/}
-          <tr key="subject" className="subject-row">
+          <tr key="subject" className="subjectRow">
             <td key="name">Name</td>
             <td key="age">Age</td>
             <td key="nationality">Nationality</td>

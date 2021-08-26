@@ -1,7 +1,7 @@
 import React from "react";
 import HandleDisplayData from "./HandleDisplayData";
 import HandleSort from "./HandleSort";
-import '../App.css';
+import "../App.css";
 
 export default class HandleDriverData extends React.Component {
   state = {
@@ -100,14 +100,16 @@ export default class HandleDriverData extends React.Component {
   render() {
     return (
       <div className="backgroundStyle">
-        <div className="tableBody">
-          <div className="table-headline">
-            <h1>Formula 1 Drivers Standing 2021</h1>
+        <div className="tableContainer">
+          <div className="tableHeader">
+            <div className="tableHeadline">
+              <h1>Formula 1 Drivers Standing 2021</h1>
+            </div>
+            <div>
+              <HandleSort callBack={this.handleDataSorting} />
+            </div>
           </div>
-          <div>
-            <HandleSort callBack={this.handleDataSorting} />
-          </div>
-          <div>
+          <div className="tableBody">
             <HandleDisplayData drivers={this.state.drivers} />
           </div>
         </div>
@@ -116,15 +118,6 @@ export default class HandleDriverData extends React.Component {
   }
 }
 
-const backgroundStyle = {
-  backgroundImage:
-    "url('https://source.unsplash.com/1600x900/?formula-one,')",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  width: "100vw",
-  height: "100vh",
-};
 /* 
 async componentDidMount() {
     const response = await fetch("https://ergast.com/api/f1/current/driverStandings.json");
