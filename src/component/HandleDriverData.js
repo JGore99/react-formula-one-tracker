@@ -1,5 +1,5 @@
 import React from "react";
-import HandleDisplayData from "./HandleDisplayData";
+import Driver from "./Driver";
 import HandleSort from "./HandleSort";
 import "../App.css";
 
@@ -89,14 +89,6 @@ export default class HandleDriverData extends React.Component {
     });
   };
 
-  handleBackgroundImage = () => {
-    return <div>style = {}</div>;
-  };
-
-  componentDidUpdate() {
-    console.log(this.props.selection);
-  }
-
   render() {
     return (
       <div className="backgroundStyle">
@@ -110,7 +102,32 @@ export default class HandleDriverData extends React.Component {
             </div>
           </div>
           <div className="tableBody">
-            <HandleDisplayData drivers={this.state.drivers} />
+            <table className="table">
+              <thead>
+                {/* <HandleSort callBack={props.handleDataSorting} /> this is how it would look if it needed to pass through this file and up*/}
+                <tr key="subject" className="subjectRow">
+                  <td key="name">Name</td>
+                  <td key="age">Age</td>
+                  <td key="nationality">Nationality</td>
+                  <td key="team">Team</td>
+                  <td key="championship">Championship Pts.</td>
+                  <td key="wins">Race Wins</td>
+                </tr>
+              </thead>
+              <tbody>
+                {" "}
+                {this.state.isLoading ? (
+                  <h3>Data loading....</h3>
+                ) : (
+                  <>
+                    {" "}
+                    {this.state.drivers.map((driver) => (
+                      <Driver driver={driver} />
+                    ))}
+                  </>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
